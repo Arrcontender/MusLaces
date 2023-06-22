@@ -11,7 +11,7 @@ class Genre extends Model
 
     public function group()
     {
-        return $this->belongsTo(GenresGroup::class);
+        return $this->belongsTo(GenresGroup::class, 'genre_group_id');
     }
 
     protected $fillable = [

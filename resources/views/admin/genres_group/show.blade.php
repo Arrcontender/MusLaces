@@ -26,7 +26,7 @@
                             <div class="info-box bg-light">
                                 <div class="info-box-content">
                                     <span class="info-box-text text-center text-muted">Количество поджанров</span>
-                                    <span class="info-box-number text-center text-muted mb-0">0</span>
+                                    <span class="info-box-number text-center text-muted mb-0">{{ $genresGroup->genres->count() }}</span>
                                 </div>
                             </div>
                         </div>
@@ -63,8 +63,16 @@
                     <p class="text-muted">{{ $genresGroup->description }}</p>
                     <br>
                     <div class="text-center mt-5 mb-3">
-                        <a href="#" class="btn btn-sm btn-primary">Редактировать</a>
-                        <a href="#" class="btn btn-sm btn-warning">Удалить</a>
+                        <a href="{{ route('genres_group.edit', $genresGroup->id) }}" class="btn btn-sm btn-primary">Редактировать</a>
+                        <form style="display: inline-block" action="{{ route('genres_group.destroy', $genresGroup->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm delete-button">
+                                <i class="fas fa-trash">
+                                </i>
+                                Удалить
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>

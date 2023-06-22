@@ -19,7 +19,7 @@ class GenreController extends Controller
     public function index()
     {
         $genres = Genre::all();
-        return view('admin.genres.index', [
+        return view('admin.genre.index', [
             'genres' => $genres
         ]);
     }
@@ -54,7 +54,23 @@ class GenreController extends Controller
      */
     public function show(Genre $genre)
     {
-        //
+        $group = $genre->group;
+        return view('admin.genre.show', [
+            'group' => $group,
+            'genre' => $genre
+        ]);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Genre $genre)
+    {
+        $groups = GenresGroup::all();
+        return view('admin.genre.edit', [
+            'genre' => $genre,
+            'groups' => $groups
+        ]);
     }
 
     /**
@@ -62,7 +78,12 @@ class GenreController extends Controller
      */
     public function update(Request $request, Genre $genre)
     {
-        //
+        $genre->name = $request->name;
+        $genre->genre_group_id = $request->group;
+        $genre->description = $request->description;
+        $genre->save();
+
+        return redirect()->back()->withSuccess('Поджанр был успешно обновлен!');
     }
 
     /**
@@ -70,6 +91,8 @@ class GenreController extends Controller
      */
     public function destroy(Genre $genre)
     {
-        //
+        $genre->delete();
+
+        return redirect()->back()->withSuccess('Жанр удалён!');
     }
 }

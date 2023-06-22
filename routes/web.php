@@ -31,7 +31,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// TODO admin-panel
+ //TODO admin-panel
 Route::middleware(['role:admin'])->prefix('admin_panel')->group(function () {
     Route::get('/', [HomeController::class, 'index']);
     Route::resource('genre', GenreController::class);

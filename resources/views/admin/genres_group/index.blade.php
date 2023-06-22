@@ -65,8 +65,7 @@
                             </a>
                         </td>
                         <td>
-                            <!-- TODO Поджанры количество -->
-                            ...
+                            {{ $group->genres->count() }}
                         </td>
                         <td class="project-actions text-right">
                             <a class="btn btn-primary btn-sm" href="{{ route('genres_group.show', $group->id) }}">
@@ -79,7 +78,7 @@
                                 </i>
                                 Редактировать
                             </a>
-                            <form action="{{ route('genres_group.destroy', $group->id) }}" method="POST">
+                            <form style="display: inline-block" action="{{ route('genres_group.destroy', $group->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm delete-button">
