@@ -25,7 +25,7 @@
     <section class="content">
         <div class="container-fluid">
             <div class="card card-primary">
-                <form action="{{ route('genres.store') }}" method="POST">
+                <form action="{{ route('genre.store') }}" method="POST">
                     @csrf
                     <div class="card-header">
                         <h3 class="card-title">Форма создания</h3>

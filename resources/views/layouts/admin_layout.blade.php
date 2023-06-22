@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="/admin/plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
     <link rel="stylesheet" href="/admin/plugins/summernote/summernote-bs4.min.css">
+    <link href="/admin/dist/css/colorbox.css" rel="stylesheet">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -214,7 +215,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="./index3.html" class="nav-link">
+                                <a href="{{ route('musician.create') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Музыкант</p>
                                 </a>
@@ -301,6 +302,63 @@
 <script src="/admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
 <script src="/admin/dist/js/adminlte.js"></script>
+<!-- File Storage (elFinder + tinyMCE) -->
+<script src="https://cdn.tiny.cloud/1/d3i292nh47odqbieuq5j77db2lf2hk13bxfng89f2zx5itca/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+    tinymce.init({
+        selector: '.editor',
+        plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss',
+        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+        tinycomments_mode: 'embedded',
+        tinycomments_author: 'Author name',
+        file_picker_callback: elFinderBrowser,
+        mergetags_list: [
+            { value: 'First.Name', title: 'First Name' },
+            { value: 'Email', title: 'Email' },
+        ]
+    });
+
+    function elFinderBrowser (callback, value, meta) {
+        tinymce.activeEditor.windowManager.openUrl({
+            title: 'File Manager',
+            url: '/elfinder/tinymce5',
+            /**
+             * On message will be triggered by the child window
+             *
+             * @param dialogApi
+             * @param details
+             * @see https://www.tiny.cloud/docs/ui-components/urldialog/#configurationoptions
+             */
+            onMessage: function (dialogApi, details) {
+                if (details.mceAction === 'fileSelected') {
+                    const file = details.data.file;
+
+                    // Make file info
+                    const info = file.name;
+
+                    // Provide file and text for the link dialog
+                    if (meta.filetype === 'file') {
+                        callback(file.url, {text: info, title: info});
+                    }
+
+                    // Provide image and alt text for the image dialog
+                    if (meta.filetype === 'image') {
+                        callback(file.url, {alt: info});
+                    }
+
+                    // Provide alternative source and posted for the media dialog
+                    if (meta.filetype === 'media') {
+                        callback(file.url);
+                    }
+
+                    dialogApi.close();
+                }
+            }
+        });
+    }
+</script>
+<script type="text/javascript" src="/admin/dist/js/jquery.colorbox-min.js"></script>
+<script type="text/javascript" src="/packages/barryvdh/elfinder/js/standalonepopup.js"></script>
 {{--<!-- AdminLTE for demo purposes -->--}}
 {{--<script src="/admin/dist/js/demo.js"></script>--}}
 {{--<!-- AdminLTE dashboard demo (This is only for demo purposes) -->--}}

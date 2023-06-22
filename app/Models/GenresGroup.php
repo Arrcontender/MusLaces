@@ -16,6 +16,15 @@ class GenresGroup extends Model
         return $this->hasMany(Genre::class, 'genre_group_id');
     }
 
+    public function musicians()
+    {
+        return $this->belongsToMany(
+            Musician::class,
+            'musicians_to_genre_groups',
+            'genres_group_id'
+        );
+    }
+
     protected $fillable = [
         'name',
         'bpm',

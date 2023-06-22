@@ -49,7 +49,7 @@
                         <h3>{{ $musicians }}</h3>
                         <p>Музыканты</p>
                     </div>
-                    <a href="#" class="small-box-footer">Подробнее <i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="{{ route('musician.index') }}" class="small-box-footer">Подробнее <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->

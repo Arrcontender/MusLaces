@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Api\GenreController;
 use App\Http\Controllers\Api\GenresGroupController;
+use App\Http\Controllers\Api\MusicianController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,6 +37,7 @@ Route::middleware(['role:admin'])->prefix('admin_panel')->group(function () {
     Route::get('/', [HomeController::class, 'index']);
     Route::resource('genre', GenreController::class);
     Route::resource('genres_group', GenresGroupController::class);
+    Route::resource('musician', MusicianController::class);
 });
 
 
