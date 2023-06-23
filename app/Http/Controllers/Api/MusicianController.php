@@ -52,7 +52,11 @@ class MusicianController extends Controller
      */
     public function show(Musician $musician)
     {
-        // TODO
+        $groups = $musician->genreGroups()->get();
+        return view('admin.musician.show', [
+            'musician' => $musician,
+            'groups' => $groups
+        ]);
     }
 
     /**
@@ -60,7 +64,19 @@ class MusicianController extends Controller
      */
     public function edit(Musician $musician)
     {
-        // TODO
+        $groups = GenresGroup::all();
+        $actualGroups = $musician->genreGroups()->get();
+        $actualGroupsNames = [];
+
+        foreach($actualGroups as $group) {
+            $actualGroupsNames[] = $group->name;
+        }
+
+        return view('admin.musician.edit', [
+            'musician' => $musician,
+            'actualGroupsNames' => $actualGroupsNames,
+            'groups' => $groups
+        ]);
     }
 
     /**
@@ -68,7 +84,21 @@ class MusicianController extends Controller
      */
     public function update(Request $request, Musician $musician)
     {
-        // TODO
+        if ($request->name) {
+            $musician->name = $request->name;
+        }
+        if ($request->input('groups')) {
+            $musician->genreGroups()->sync($request->input('groups'));
+        }
+        if ($request->description) {
+            $musician->description = $request->description;
+        }
+        if ($request->img) {
+            $musician->img = '/' . $request->img;
+        }
+        $musician->save();
+
+        return redirect()->back()->withSuccess('Поджанр был успешно обновлен!');
     }
 
     /**
@@ -76,6 +106,8 @@ class MusicianController extends Controller
      */
     public function destroy(Musician $musician)
     {
-        // TODO
+        $musician->delete();
+
+        return redirect()->back()->withSuccess('Музыкант удалён!');
     }
 }

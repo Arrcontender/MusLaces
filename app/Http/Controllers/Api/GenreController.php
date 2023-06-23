@@ -78,9 +78,15 @@ class GenreController extends Controller
      */
     public function update(Request $request, Genre $genre)
     {
-        $genre->name = $request->name;
-        $genre->genre_group_id = $request->group;
-        $genre->description = $request->description;
+        if ($request->name) {
+            $genre->name = $request->name;
+        }
+        if ($request->group) {
+            $genre->genre_group_id = $request->group;
+        }
+        if ($request->description) {
+            $genre->description = $request->description;
+        }
         $genre->save();
 
         return redirect()->back()->withSuccess('Поджанр был успешно обновлен!');

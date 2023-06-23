@@ -69,9 +69,15 @@ class GenresGroupController extends Controller
      */
     public function update(Request $request, GenresGroup $genresGroup)
     {
-        $genresGroup->name = $request->name;
-        $genresGroup->bpm = $request->bpm;
-        $genresGroup->description = $request->description;
+        if ($request->name) {
+            $genresGroup->name = $request->name;
+        }
+        if ($request->bpm) {
+            $genresGroup->bpm = $request->bpm;
+        }
+        if ($request->description) {
+            $genresGroup->description = $request->description;
+        }
         $genresGroup->save();
 
         return redirect()->back()->withSuccess('Жанр был успешно обновлен!');
