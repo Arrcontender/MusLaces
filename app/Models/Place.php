@@ -14,4 +14,13 @@ class Place extends Model
         'description',
         'average_check'
     ];
+
+    public function genreGroups()
+    {
+        return $this->belongsToMany(
+            GenresGroup::class,
+            'places_to_genre_groups',
+            'place_id'
+        );
+    }
 }

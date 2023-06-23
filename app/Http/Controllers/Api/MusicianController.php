@@ -98,7 +98,7 @@ class MusicianController extends Controller
         }
         $musician->save();
 
-        return redirect()->back()->withSuccess('Поджанр был успешно обновлен!');
+        return redirect()->back()->withSuccess('Музыкант был успешно обновлен!');
     }
 
     /**

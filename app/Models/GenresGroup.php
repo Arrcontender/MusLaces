@@ -25,6 +25,15 @@ class GenresGroup extends Model
         );
     }
 
+    public function places()
+    {
+        return $this->belongsToMany(
+            Place::class,
+            'places_to_genre_groups',
+            'genres_group_id'
+        );
+    }
+
     protected $fillable = [
         'name',
         'bpm',

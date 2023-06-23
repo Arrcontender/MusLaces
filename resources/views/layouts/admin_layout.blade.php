@@ -220,6 +220,12 @@
                                     <p>Музыкант</p>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="{{ route('place.create') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Площадка</p>
+                                </a>
+                            </li>
                         </ul>
                     </li>
                     <li class="nav-item">

@@ -52,6 +52,16 @@
                     <a href="{{ route('musician.index') }}" class="small-box-footer">Подробнее <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-success">
+                    <div class="inner">
+                        <h3>{{ $places }}</h3>
+                        <p>Площадки</p>
+                    </div>
+                    <a href="{{ route('place.index') }}" class="small-box-footer">Подробнее <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
             <!-- ./col -->
             <div class="col-lg-3 col-6">
                 <!-- small box -->
