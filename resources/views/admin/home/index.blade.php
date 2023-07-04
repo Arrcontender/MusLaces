@@ -70,7 +70,7 @@
                         <h3>{{ $users }}</h3>
                         <p>Пользователи</p>
                     </div>
-                    <a href="#" class="small-box-footer">Подробнее <i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="{{ route('user.index') }}" class="small-box-footer">Подробнее <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->

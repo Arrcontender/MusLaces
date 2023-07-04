@@ -22,7 +22,17 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'img'
     ];
+
+    public function places()
+    {
+        return $this->belongsToMany(
+            Place::class,
+            'places_users',
+            'user_id'
+        )->withPivot('music', 'vibe', 'drinks', 'cleanness', 'price');
+    }
 
     /**
      * The attributes that should be hidden for serialization.

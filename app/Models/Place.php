@@ -23,4 +23,13 @@ class Place extends Model
             'place_id'
         );
     }
+
+    public function users()
+    {
+        return $this->belongsToMany(
+            User::class,
+            'places_users',
+            'place_id'
+        );
+    }
 }
