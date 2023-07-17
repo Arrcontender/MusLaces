@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class GenreResource extends JsonResource
+class GenresGroupResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -18,7 +18,8 @@ class GenreResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'description' => $this->description,
-            'main_genre' => new GenresGroupResource($this->whenLoaded('group'))
+            'bpm' => $this->bpm,
+            'subgenres' => GenreResource::collection($this->whenLoaded('genres'))
         ];
     }
 }

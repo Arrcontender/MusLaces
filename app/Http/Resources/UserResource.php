@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class GenreResource extends JsonResource
+class UserResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,8 +17,8 @@ class GenreResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'description' => $this->description,
-            'main_genre' => new GenresGroupResource($this->whenLoaded('group'))
+            'email' => $this->email,
+            'rated_places' => PlaceResource::collection($this->whenLoaded('places'))
         ];
     }
 }
