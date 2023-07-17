@@ -17,3 +17,6 @@ Route::apiResource('genre_groups',GenresGroupController::class);
 Route::apiResource('musicians', MusicianController::class);
 Route::apiResource('places', PlaceController::class);
 Route::apiResource('users', UserController::class);
+
+Route::post('/users/{user_id}/place/{place_id}', [UserController::class, 'storeNewRates']);
+Route::patch('/users/{user_id}/place/{place_id}', [UserController::class, 'editRates']);

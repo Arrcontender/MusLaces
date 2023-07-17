@@ -18,7 +18,7 @@ class PlaceResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'average_check' => $this->whenNotNull($this->average_check),
-            'description' => $this->description,
+            'description' => $this->whenLoaded($this->description),
             'genres' => GenresGroupResource::collection($this->whenLoaded('genreGroups')),
             'rated_users' => UserResource::collection($this->whenLoaded('users')),
             'rates' => $this->whenPivotLoaded('places_users', function () {
