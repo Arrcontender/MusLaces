@@ -59,9 +59,6 @@
                             <input name="average_check" type="text" value="{{ $place->average_check }}" class="form-control form-control-border border-width-2" id="exampleInputBorderWidth2" placeholder="Введите">
                         </div>
                         <div class="form-group">
-                            <textarea name="text" class="editor"></textarea>
-                        </div>
-                        <div class="form-group">
                             <label for="feature_image">Фото</label>
                             <img src="{{ $place->img }}" alt="" class="img-uploaded" style="display: block; width: 150px">
                             <input class="form-control" type="text" id="feature_image" name="img" value="" hidden>

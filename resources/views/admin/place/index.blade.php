@@ -69,9 +69,15 @@
                                     </a>
                                 @endforeach
                             </td>
-                            <td>
-                                <img alt="Avatar" class="table-avatar" src={{ $place->img }}>
-                            </td>
+                            @if($place->img)
+                                <td>
+                                    <img alt="Avatar" class="table-avatar" src={{ $place->img }}>
+                                </td>
+                            @else
+                                <td>
+                                    <img class="table-avatar" src="">
+                                </td>
+                            @endif
                             <td>
                                 <a>
                                     {{ $place->average_check }}

@@ -55,9 +55,6 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <textarea name="text" class="editor"></textarea>
-                        </div>
-                        <div class="form-group">
                             <label for="feature_image">Фото</label>
                             <img src="{{ $musician->img }}" alt="" class="img-uploaded" style="display: block; width: 150px">
                             <input class="form-control" type="text" id="feature_image" name="img" value="" hidden>
